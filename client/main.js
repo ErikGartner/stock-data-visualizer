@@ -6,12 +6,14 @@ import Highcharts from 'highcharts/highstock';
 
 import './main.html';
 
+const DATA_KEYS = {'data.LastTradePriceOnly': 1, 'data.Name': 1, 'time': 1};
+
 Template.stockselect.onCreated(function() {
   this.tickers = new ReactiveVar();
   this.tickersReady = new ReactiveVar(false);
   Meteor.call('getTickers', (error, result) => {
     if (error) {
-      console.log(error)
+      console.log(error);
     } else {
       this.tickers.set(result);
       this.tickersReady.set(true);
@@ -40,13 +42,12 @@ Template.stockselect.events({
 });
 
 Template.stockchart.showChart = function(ticker){
-  handle = Meteor.subscribe('ticker', ticker);
+  handle = Meteor.subscribe('ticker', ticker, DATA_KEYS);
   Tracker.autorun(function() {
     if (handle.ready()){
       var sample = StockData.findOne();
       var decimals = sample.data.LastTradePriceOnly.split(".")[1].length;
       var name = sample.data.Name;
-      console.log(StockData.find().fetch())
       var stockHistory = StockData.find().map(function (doc){
                           return [(new Date(doc.time)).getTime(),
                           parseFloat(doc.data.LastTradePriceOnly)]
