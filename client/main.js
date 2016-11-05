@@ -54,24 +54,28 @@ Template.stockchart.showChart = function(ticker){
                         });
 
       Highcharts.stockChart('chart', {
-           rangeSelector: {
-               selected: 1
-           },
-
-           title: {
-              text: name
-           },
-          yAxis: {
-            maxPadding:0.2,
-            minPadding:0.2
-          },
-          series: [{
-               name: ticker,
-               data: stockHistory,
-               tooltip: {
-                  valueDecimals: decimals
-               }
-           }]
+        rangeSelector: {
+          selected: 1
+        },
+        title: {
+          text: name
+        },
+        yAxis: {
+          maxPadding:0.2,
+          minPadding:0.2
+        },
+        plotOptions: {
+          series: {
+            gapSize: 2
+          }
+        },
+        series: [{
+            name: ticker,
+            data: stockHistory,
+            tooltip: {
+                valueDecimals: decimals
+            }
+        }]
       });
       handle.stop();
     }
