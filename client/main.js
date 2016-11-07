@@ -53,12 +53,21 @@ Template.stockchart.showChart = function(ticker){
                           parseFloat(doc.data.LastTradePriceOnly)]
                         });
 
+      Highcharts.setOptions({
+        global: {
+          useUTC: false
+        }
+      });
+
       Highcharts.stockChart('chart', {
         rangeSelector: {
           selected: 1
         },
         title: {
           text: name
+        },
+        xAxis: {
+          type: 'datetime'
         },
         yAxis: {
           maxPadding:0.2,
