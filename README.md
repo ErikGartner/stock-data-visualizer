@@ -1,6 +1,6 @@
 # Stock Data Visualizer
 
-*A simple Meteor app that can visualize the data collected by [stock data collector](https://github.com/ErikGartner/stock-collector). *
+*A simple Meteor app that can visualize the data collected by [stock data collector](https://github.com/ErikGartner/stock-collector)*
 
 ## Usage
 
