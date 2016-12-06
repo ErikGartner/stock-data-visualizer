@@ -1,2 +1,2 @@
 # Stock Data Visualizer
-*A graphical interface to the stock data collector*
+*A very basic graphical interface to the [stock data collector](https://github.com/ErikGartner/stock-collector)*
