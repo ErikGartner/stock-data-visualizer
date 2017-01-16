@@ -48,11 +48,10 @@ Template.stockchart.showChart = function(ticker){
       var sample = StockData.findOne();
       var decimals = sample.data.LastTradePriceOnly.split(".")[1].length;
       var name = sample.data.Name;
-      var stockHistory = StockData.find().map(function (doc){
+      var stockHistory = StockData.find({},{sort: {time: 1}}).map(function (doc){
                           return [(new Date(doc.time)).getTime(),
                           parseFloat(doc.data.LastTradePriceOnly)]
                         });
-
       Highcharts.setOptions({
         global: {
           useUTC: false
